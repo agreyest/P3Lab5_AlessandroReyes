@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
 				cin>>nombre;
 				
 				civilizaciones.push_back( new Civilizacion(nombre) );
-				cout<<"Civilizacion creada con exito, buena suerte "<<nombre<<", gracias por preferirnos."<<endl;
+				cout<<"Civilizacion creada con exito, buena suerte "<<nombre<<", gracias por preferirnos."<<endl<<endl;
 				break;
 			}//fin case 1 op1
 			
@@ -79,6 +79,7 @@ int main(int argc, char** argv) {
 					opJugar--;
 				}
 				Civilizacion* Civil_select = civilizaciones[opJugar];
+				cout<<"size habit: "<<Civil_select->getHabitantesSize()<<endl;
 				
 			
 				int  opcion2 = menu2(Civil_select->getNom_User());
@@ -316,6 +317,7 @@ int main(int argc, char** argv) {
 										for(int i = 0; i < Civil_select->getHabitantesSize(); i++){
 											if(Civil_select->getHabitanteV()[i]->getVida() <= 0){
 												contDeathAtt++;
+												Civil_select->getHabitanteV().erase( Civil_select->getHabitanteV().begin() + i );
 											}
 										}
 										for(int i = 0; i < oponente->getHabitantesSize(); i++){
@@ -330,7 +332,8 @@ int main(int argc, char** argv) {
 											seguirOp3==0;
 											
 										}else if( contDeathDef < (oponente->getHabitantesSize()-1) ){
-											cout<<"ataco con exito, mato a todos los habitantes"<<endl;
+											cout<<"Ataque con exito, mato a todos los habitantes"<<endl;
+											civilizaciones.erase(civilizaciones.begin() + numOponente);
 											Civil_select->setOro(Civil_select->getOro()+100);
 											Civil_select->setMadera(Civil_select->getMadera()+100);
 											Civil_select->setAlimento(Civil_select->getAlimentos()+100);
@@ -360,6 +363,15 @@ int main(int argc, char** argv) {
 						}//fin case8 op2
 						
 						case 9:{//OP2 SIGUIENTE HORA
+							int contAldeanos =0;
+							for(int i = 0; i < enEspera.size(); i++){
+								Aldeano* aldeano = dynamic_cast<Aldeano*>(Civil_select->getHabitanteV()[i]);
+								cout<<"aldeano: "<<aldeano;
+								if(aldeano != 0 ){//significa que es warrior
+									contAldeanos++;
+								}
+							}
+							
 							for(int i = 0; i < enEspera.size(); i++){
 								enEspera[i]->lessHora();
 								if(enEspera[i]->getHoras() <= 0 ){
@@ -367,9 +379,12 @@ int main(int argc, char** argv) {
 									enEspera.erase(enEspera.begin() + i);
 								}
 							}
-							cout<<"Tiene "<<Civil_select->getOro()<<" de oro almacenado.";
-							cout<<"Tiene "<<Civil_select->getMadera()<<" de madera almacenado.";
-							cout<<"Tiene "<<Civil_select->getAlimentos()<<" de alimentos almacenado.";
+							Civil_select->setOro( Civil_select->getOro() + (3*contAldeanos) );
+							Civil_select->setMadera( Civil_select->getMadera() + (4*contAldeanos) );
+							Civil_select->setAlimento( Civil_select->getAlimentos() + (5*contAldeanos) );
+							cout<<"Tiene "<<Civil_select->getOro()<<" de oro almacenado."<<endl;
+							cout<<"Tiene "<<Civil_select->getMadera()<<" de madera almacenado."<<endl;
+							cout<<"Tiene "<<Civil_select->getAlimentos()<<" de alimentos almacenado."<<endl;
 							for(int i = 0; i < enEspera.size(); i++){
 								cout<<"A uno de sus habitantes le falta "<<enEspera[i]->getHoras()<<" para que se termine."<<endl;
 							}
