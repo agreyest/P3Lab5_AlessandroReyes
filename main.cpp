@@ -80,17 +80,71 @@ int main(int argc, char** argv) {
 				}
 				Civilizacion* Civil_select = civilizaciones[opJugar];
 				
+			
 				int  opcion2 = menu2(Civil_select->getNom_User());
 				int seguirOp2 = 1;
+				
 				while(seguirOp2 == 1){
 					switch(opcion2){
 						case 1:{//OP2 CREAR ALDEANO
+							int alimentos = Civil_select->getAlimentos();
+							int casas = Civil_select->getCasas();
+							int Numhabitantes = Civil_select->getHabitantesSize() + enEspera.size();
+							if( ( (casas*5)-Numhabitantes)>0 ){//if para ver si hay alojamiento disponible
+								
+								if(alimentos >= 25){//if para ver si hay alimentos disponible
+									enEspera.push_back( new Aldeano() );
+									alimentos -= 25;
+									Civil_select->setAlimento(alimentos);
+									cout<<endl<<"El aldeano se empezo a crear, estara listo en una hora."<<endl;
+								
+								}else{////fin if para ver si hay alojamiento disponible
+									cout<<endl<<"No tiene los alimentos suficiente para crear al aldeano."<<endl;	
+								}
+							
+							}else{//fin if para ver si hay alojamiento disponible
+								cout<<endl<<"No hay alojamiento disponible para crear al aldeano."<<endl;
+							}
+							
+							
 							
 							break;
 						}//fin case1 op2
 						
 						case 2:{//OP2 CREAR JINETE
-							
+							int alimentos = Civil_select->getAlimentos();
+							int oro = Civil_select->getOro();
+							int madera = Civil_select->getMadera();
+							int casas = Civil_select->getCasas();
+							int Numhabitantes = Civil_select->getHabitantesSize() + enEspera.size();
+							if( ( (casas*5)-Numhabitantes)>0 ){//if para ver si hay alojamiento disponible
+								
+								if(alimentos >= 75 && oro >= 25 && madera >= 5 && Civil_select->getEstablo() > 0){
+									enEspera.push_back( new Jinete() );
+									alimentos -= 75;
+									oro -= 25;
+									madera -= 5;
+									Civil_select->setAlimento(alimentos);
+									Civil_select->setOro(oro);
+									Civil_select->setMadera(madera);
+									cout<<"El Jinete se empezo a crear, estara listo en seis horas."<<endl;
+								}else{
+									if(Civil_select->getEstablo() <= 0){
+										cout<<"Necesita crear un establo para crear un jinete."<<endl;
+									}
+									if(alimentos <= 74){
+										cout<<"No tiene alimentos necesarios para crear al jinete."<<endl;
+									}
+									if(oro <= 24){
+										cout<<"No tiene oro necesario para crear al jinete."<<endl;
+									}
+									if(madera <= 4){
+										cout<<"No tiene madera necesaria para crear al jinete."<<endl;
+									}
+								}	
+							}else{
+								cout<<"No hay alojamiento disponible para hacer el jinete."<<endl;
+							}
 							break;
 						}//fin case2 op2
 						
@@ -131,6 +185,9 @@ int main(int argc, char** argv) {
 						
 						case 10:{//OP2 SALIR
 							seguirOp2 = 0;
+							for(int i = 0; i < enEspera.size(); i++){
+								delete enEspera[i];
+							}
 							break;
 						}//fin case10 op2
 						
@@ -146,6 +203,13 @@ int main(int argc, char** argv) {
 			
 			case 3:{//OPCIÓN PRINCIPAL SALIR
 				seguir = 0;
+				for(int i = 0; i < civilizaciones.size(); i++){
+					delete civilizaciones[i];
+				}
+				for(int i = 0; i < enEspera.size(); i++){
+					delete enEspera[i];
+				}
+				
 				break;
 			}//fin case 3 op1
 		

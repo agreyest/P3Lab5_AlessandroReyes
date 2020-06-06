@@ -11,6 +11,16 @@ void Habitante::setVida(int vida){
 	this->vida = vida;
 }
 
+int Habitante::getHoras(){
+	return this->horasRest;	
+}
+void Habitante::setHoras(int hora){
+	this->horasRest = hora;
+}
+void Habitante::lessHora( ){
+	this->horasRest--;
+}
+
 
 
 

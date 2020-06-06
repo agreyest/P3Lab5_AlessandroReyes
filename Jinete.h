@@ -7,6 +7,9 @@ using namespace std;
 class Jinete : public Guerrero{
 	public:
 		Jinete();
+		
+		void Atacar(Habitante*);
+		
 		~Jinete();
 	protected:
 };

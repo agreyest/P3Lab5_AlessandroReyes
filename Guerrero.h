@@ -8,10 +8,13 @@ class Guerrero : public Habitante{
 	public:
 		Guerrero();
 		
-		
+		int getPoder_Ataque();
+		void setPoder_Ataque(int);
+		void Atacar(Habitante*);
 		
 		~Guerrero();
 	protected:
+		int Poder_ataque;
 };
 
 #endif

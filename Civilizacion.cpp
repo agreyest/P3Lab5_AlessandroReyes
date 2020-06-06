@@ -30,47 +30,54 @@ string Civilizacion::getNom_User(){
 }
 
 void Civilizacion::setOro(int oro){
-	this->oro += oro;
+	this->oro = oro;
 }
 int Civilizacion::getOro(){
 	return this->oro;
 }
 		
 void Civilizacion::setMadera(int Madera){
-	this->madera += Madera;
+	this->madera = Madera;
 }
 int Civilizacion::getMadera(){
 	return this->madera;
 }
 		
 void Civilizacion::setAlimento(int alimento){
-	this->alimento += alimento;
+	this->alimento = alimento;
 }
 int Civilizacion::getAlimentos(){
 	return this->alimento;
 }
 		
 void Civilizacion::setCasa(int casa){
-	this->casas += casa;
+	this->casas = casa;
 }
 int Civilizacion::getCasas(){
 	return this->casas;
 }
 		
 void Civilizacion::setEstablo(int establo){
-	this->establo += establo;
+	this->establo = establo;
 }
 int Civilizacion::getEstablo(){
 	return this->establo;
 }
 		
 void Civilizacion::setCuartel(int cuartel){
-	this->cuartel += cuartel;
+	this->cuartel = cuartel;
 }
 int Civilizacion::getCuartel(){
 	return this->cuartel;
 }
 
+int Civilizacion::getHabitantesSize(){
+	return this->habitantes.size();
+}
+
+vector<Habitante*> Civilizacion::getHabitanteV(){
+	return this->habitantes;
+}
 
 
 Civilizacion::~Civilizacion(){

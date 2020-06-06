@@ -34,6 +34,9 @@ class Civilizacion
 		
 		void setCuartel(int);
 		int getCuartel();
+		
+		int getHabitantesSize();
+		vector<Habitante*> getHabitanteV();
 				
 		~Civilizacion();
 	protected:

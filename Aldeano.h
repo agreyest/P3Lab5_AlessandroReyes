@@ -8,7 +8,7 @@ class Aldeano : public Habitante{
 	public:
 		Aldeano();
 		
-		
+		void Atacar(Habitante*);
 		
 		~Aldeano();
 	protected:
