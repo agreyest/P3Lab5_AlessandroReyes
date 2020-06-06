@@ -43,8 +43,6 @@ void Arquero::Atacar(Habitante* habitante){
 					
 					habitante->setVida(habitante->getVida()-damagethis);
 					this->setVida(this->getVida()-damageJinete);
-				}else{
-					
 				}
 			}
 		}
