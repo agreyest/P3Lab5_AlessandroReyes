@@ -364,9 +364,8 @@ int main(int argc, char** argv) {
 						
 						case 9:{//OP2 SIGUIENTE HORA
 							int contAldeanos =0;
-							for(int i = 0; i < enEspera.size(); i++){
+							for(int i = 0; i < Civil_select->getHabitanteV().size(); i++){
 								Aldeano* aldeano = dynamic_cast<Aldeano*>(Civil_select->getHabitanteV()[i]);
-								cout<<"aldeano: "<<aldeano;
 								if(aldeano != 0 ){//significa que es warrior
 									contAldeanos++;
 								}
